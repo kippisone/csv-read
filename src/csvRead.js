@@ -14,6 +14,7 @@ class CSVRead {
     this.newline = opts.newline || '\n'
 
     let lines = '';
+    let numLines = 0;
     const delimiterReg = new RegExp(this.delimiter)
     const quoteReg = new RegExp(`^${this.quote}|${this.quote}$`)
 
@@ -29,13 +30,14 @@ class CSVRead {
       split.forEach((line) => {
         const cols = line.split(delimiterReg)
 
+        numLines += 1
         this.__parseFn(cols.map((c) => c.replace(quoteReg, '')))
       })
 
     })
 
     stream.on('end', () => {
-      this.__resolve()
+      this.__resolve(numLines)
     })
 
     stream.on('error', (err) => {

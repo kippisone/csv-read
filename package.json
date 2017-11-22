@@ -1,0 +1,31 @@
+{
+  "name": "csv-read",
+  "version": "0.0.0",
+  "description": "Read data from a CSV file using streams. Optimized for big CSV files",
+  "main": "src/csvRead.js",
+  "scripts": {
+    "test": "mocha --reporter lagoon-reporter tests/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Andifeind/csv-read.git"
+  },
+  "keywords": [
+    "csv",
+    "read",
+    "readcsv",
+    "stream"
+  ],
+  "author": "Andi Heinkelein <andifeind@noname-media.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Andifeind/csv-read/issues"
+  },
+  "homepage": "https://github.com/Andifeind/csv-read#readme",
+  "devDependencies": {
+    "@noname-media/eslint-config-standard": "1.1.0",
+    "inspect.js": "1.9.0",
+    "lagoon-reporter": "0.3.4",
+    "mocha": "4.0.1"
+  }
+}

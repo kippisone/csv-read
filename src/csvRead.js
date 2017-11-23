@@ -63,6 +63,7 @@ class CSVRead {
 
   parse (fn) {
     this.__parseFn = fn
+    return this
   }
 }
 

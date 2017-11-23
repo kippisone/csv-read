@@ -2,6 +2,7 @@ CSVRead
 =======
 
 Read a CSV file using streams. Optimized for big files.
+Reads 1 Million lines in lesser then a second!
 
 ```js
 const CSVRead = require('csv-read')

@@ -37,10 +37,12 @@ class CSVRead {
     })
 
     stream.on('end', () => {
+      if (!this.__resolve) return
       this.__resolve(numLines)
     })
 
     stream.on('error', (err) => {
+      if (!this.__reject) throw err
       this.__reject(err)
     })
   }

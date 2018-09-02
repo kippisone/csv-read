@@ -1,6 +1,6 @@
 {
   "name": "csv-read",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Read data from a CSV file using streams. Optimized for big CSV files",
   "main": "dist/csvRead.js",
   "scripts": {

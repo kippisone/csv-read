@@ -7,19 +7,19 @@ describe('CSV Read', () =>
     it('reads a CSV file line by line', () =>
       const opts = {}
       const csv = CSVRead.load(path.join(__dirname, './fixtures/data.csv'), opts)
-      csv.parse((line) =>
-        inspect(line).isArray()
-        inspect(line).hasLength(4)
-        inspect(line[0]).isEql({
-          date: '2017-01-03'
-          id: 344
-          name: 'Banana'
-          value: 'A basket of bananas'
-        })
+      csv.parse((line, index) =>
+        inspect(line).isObject()
       )
 
       return csv.then((res) =>
-        inspect(res).isUndefined()
+        inspect(res).isArray()
+        inspect(res).hasLength(4)
+        inspect(res[0]).isEql({
+          date: '2017-01-03'
+          id: '344'
+          name: 'Banana'
+          value: 'A basket of bananas'
+        })
       )
     )
   )

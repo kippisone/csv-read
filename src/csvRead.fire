@@ -1,63 +1,38 @@
 import * as fs from 'fs'
+import * as CSVStream from 'csv-stream'
 
 class CSVRead
-  constructor (file, opts)
+  constructor (readStream, opts)
     opts = opts || {}
 
     const options =
-      encoding: opts.encoding || 'utf8'
+      delimiter: opts.delimiter || ','
+      endLine: opts.newline || '\n'
+      escapeChar: opts.quote || '"'
+      enclosedChar: opts.quote || '"'
 
-    const stream = fs.createReadStream(file, options)
+    const csvStream = CSVStream.createStream(options)
 
-    this.delimiter = opts.delimiter || ','
-    this.quote = opts.quote || '"'
-    this.newline = opts.newline || '\n'
+    readStream.pipe(csvStream)
 
-    let lines = ''
-    let numLines = 0
-    const delimiterReg = new RegExp(this.delimiter, 'g')
-    const quoteReg = new RegExp('^${this.quote}|${this.quote}$')
-
-    stream.on('data', (chunk) =>
-      log 'Chunk' chunk
-
-      const str = lines + chunk
-      const split = chunk.split(/\n/g)
-      log 'split' split
-
-      this.parseLine(str)
-
-      # const split = chunk.split(/\n/g)
-      # split[0] = lines + split[0]
-      # if (split.length > 1)
-      #   lines = split.pop()
-      # else
-      #   lines = ''
-
-
-      # split.forEach((line) =>
-      #   const cols = line.split(delimiterReg)
-
-      #   numLines += 1
-      #   this.__parseFn(cols.map((c) => c.replace(quoteReg, '')))
-      # )
-    )
-
-    stream.on('end', () =>
-      if !this.__resolve
-        return
-      this.__resolve(numLines)
-    )
-
-    stream.on('error', (err) =>
-      if !this.__reject
-        throw err
+    const res = []
+    csvStream.on('error', (err) =>
       this.__reject(err)
+    ).on('data', (data) =>
+      const parsedData = this.__parseFn(data, res.length)
+      if parsedData !== null
+        res.push(parsedData === undefined ? data : parsedData)
+    ).on('end', (end) =>
+      this.__resolve(res)
     )
 
+  static load (file, opts)
+    const stream = fs.createReadStream(file)
 
-  static load (file)
-    return new CSVRead(file)
+    return new CSVRead(stream, opts)
+
+  static stream (readStream)
+    return new CSVRead(readStream)
 
   then (fn)
     const p = new Promise((resolve, reject) =>
@@ -72,15 +47,6 @@ class CSVRead
   parse (fn)
     this.__parseFn = fn
     return this
-
-  parseLine (str)
-    let index = 0
-
-    while true
-
-    const firstChar = str.charAt(0)
-    if this.quoteReg.test(firstChar)
-      const startIndex = 1
 
 
 export ** CSVRead

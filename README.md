@@ -17,3 +17,17 @@ csv.parse((line) => {
   console.log(`${numLine} lines parsed`)
 })
 ```
+
+### Options
+
+#### delimiter
+
+Set column delimiter, default: `,`
+
+#### quote
+
+Set column quote, default: `"`
+
+#### newline
+
+Set new line char, default: `\n`

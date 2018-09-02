@@ -4,7 +4,7 @@
   "description": "Read data from a CSV file using streams. Optimized for big CSV files",
   "main": "src/csvRead.js",
   "scripts": {
-    "test": "mocha --reporter lagoon-reporter tests/*.spec.js"
+    "test": "mocha --require firescript/register --reporter lagoon-reporter tests/*.spec.fire"
   },
   "repository": {
     "type": "git",
@@ -24,8 +24,9 @@
   "homepage": "https://github.com/Andifeind/csv-read#readme",
   "devDependencies": {
     "@noname-media/eslint-config-standard": "1.1.0",
-    "inspect.js": "1.9.0",
-    "lagoon-reporter": "0.3.4",
-    "mocha": "4.0.1"
+    "firescript": "^0.3.1",
+    "inspect.js": "^1.11.7",
+    "lagoon-reporter": "^0.4.0",
+    "mocha": "^5.2.0"
   }
 }

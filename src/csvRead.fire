@@ -10,6 +10,7 @@ class CSVRead
       endLine: opts.newline || '\n'
       escapeChar: opts.quote || '"'
       enclosedChar: opts.quote || '"'
+      columns: opts.columns || null
 
     const csvStream = CSVStream.createStream(options)
 

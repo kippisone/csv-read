@@ -24,10 +24,10 @@
   "homepage": "https://github.com/Andifeind/csv-read#readme",
   "devDependencies": {
     "@noname-media/eslint-config-standard": "1.1.0",
-    "firescript": "^0.3.2",
-    "inspect.js": "^1.11.7",
-    "lagoon-reporter": "^0.4.0",
-    "mocha": "^5.2.0"
+    "firescript": "^0.8.5",
+    "inspect.js": "^1.11.8",
+    "lagoon-reporter": "^0.7.1",
+    "mocha": "^6.1.4"
   },
   "dependencies": {
     "csv-stream": "^0.2.0"
